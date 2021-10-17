@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+bundle exec pry
+
+# Once open, include the current project:
+# require './app.rb'

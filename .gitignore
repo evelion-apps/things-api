@@ -1,0 +1,5 @@
+*.gem
+*.rbc
+.DS_Store
+*.sqlite3-shm
+*.sqlite3-wal

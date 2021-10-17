@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# USAGE
+#
+#     bin/start-dev <port> <path-to-database>
+#
+# For example:
+#
+#     bin/start-dev 3000 db/hello.sqlite3
+
+RACK_ENV="development" DB=${2} bundle exec puma -p ${1:-9292}
