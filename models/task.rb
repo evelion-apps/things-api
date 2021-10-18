@@ -1,6 +1,7 @@
 class Task < ActiveRecord::Base
   self.table_name = "TMTask"
   self.primary_key = "uuid"
+  self.inheritance_column = "none"
 
   validates :uuid, presence: true
 

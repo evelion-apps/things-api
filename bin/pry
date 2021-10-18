@@ -1,6 +1,14 @@
 #!/usr/bin/env bash
 
-bundle exec pry
+# USAGE
+#
+#     bin/pry <path-to-database>
+#
+# For example:
+#
+#     bin/pry db/hello.sqlite3
+
+RACK_ENV="development" DB=${1} bundle exec pry
 
 # Once open, include the current project:
 # require './app.rb'
