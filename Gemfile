@@ -8,6 +8,7 @@ gem "sinatra"
 gem "sinatra-activerecord"
 gem "sinatra-contrib"
 gem "sqlite3"
+gem "dotenv"
 
 group :development do
   gem "pry"

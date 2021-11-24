@@ -8,4 +8,10 @@
 #
 #     bin/start 3000 db/hello.sqlite3
 
-RACK_ENV="production" DB=${2} bundle exec puma -p ${1:-9292}
+set -a && source .env && set +a
+
+if [[ -f ".env.local" ]]; then
+  set -a && source .env.local && set +a
+fi
+
+RACK_ENV="production" DB=${2:-$DB} bundle exec puma -p ${1:-$PORT}
