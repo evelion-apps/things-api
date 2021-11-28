@@ -70,15 +70,15 @@ To validate the GraphQL API is returning data send a POST request to `http://loc
 
 ```
 {
-  "query": "{ tasks { uuid } }"
+  "query": "{ todos { uuid } }"
 }
 ```
 
 Or from the command line using cURL:
 
 ```
-$ curl -X POST http://localhost:9292 -H "Content-Type: application/json" -d '{"query": "{tasks {uuid}}"}'
-{"data":{"tasks":[{"uuid":"hello-world"}]}}
+$ curl -X POST http://localhost:9292 -H "Content-Type: application/json" -d '{"query": "{todos {uuid}}"}'
+{"data":{"todos":[{"uuid":"hello-world"}]}}
 ```
 
 ## Running
@@ -100,3 +100,11 @@ $ bin/start 3000 "~/Library/Group Containers/JLMPQHK86H.com.culturedcode.ThingsM
 [Cultured Code](https://culturedcode.com/) for their phenomenal application [Things 3](https://culturedcode.com/things/).
 
 [Awin Abi](https://github.com/awinabi/sinatra-graphql) for the lightweight Sinatra/GraphQL/SQlite application architecture inspired by his post [Simple GraphQL Server and Sinatra](https://medium.com/@awinabi/graphql-server-with-sinatra-ruby-part-1-fdd664170715).
+
+## License
+
+All code is provided free of charge and released under the MIT license. For more details see the included `LICENSE` file.
+
+## Support
+
+<a href="https://www.buymeacoffee.com/evelion" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="150" height="40"/></a>

@@ -10,11 +10,13 @@ class TaskType < GraphQL::Schema::Object
   field :creationDate, Float, null: false
   field :trashed, Integer, null: true
   field :type, Integer, null: true
+  field :typeString, String, null: true
   field :title, String, null: true
   field :notes, String, null: true
   field :dueDate, Float, null: true
   field :dueDateOffset, Integer, null: true
   field :status, Integer, null: true
+  field :statusString, String, null: true
   field :stopDate, Float, null: true
   field :start, Integer, null: true
   field :startDate, Float, null: true

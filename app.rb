@@ -4,6 +4,7 @@ require "sinatra/json"
 require "sinatra/reloader" if development?
 require "dotenv/load"
 
+require_relative "models/area"
 require_relative "models/task"
 require_relative "graphql/schema"
 
@@ -49,7 +50,13 @@ class ThingsApi < Sinatra::Base
   post "/" do
     request.body.rewind
 
-    params = JSON.parse(request.body.read)
+    request_body = request.body.read
+
+    unless request_body.present?
+      return json({error: "Invalid request. GraphQL query in the request body is missing."})
+    end
+
+    params = JSON.parse(request_body)
 
     result = ThingsApiGraphQLSchema.execute(
       params["query"],
