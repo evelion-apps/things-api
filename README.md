@@ -223,8 +223,14 @@ This project is intended to enable users to better understand their copy of an [
 
 The read-only API code is open source and released under the `GPLv3` license. For more license details see the included `LICENSE` file.
 
-## Project support
+## Donations
 
-Code is freely available with no obligation or expectation of monetary contributions. If you appreciate the project and would still like to say thanks, you can make a donation here:
+Code is freely available with no expectation or obligation of monetary contributions. If you appreciate the project and would still like to say thanks, you can make a donation here:
 
 <a href="https://www.buymeacoffee.com/evelion" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" width="150" height="40"/></a>
+
+## Support
+
+This project uses **GitHub Discussions**. Ask for help, request new features, or show what you've built with it!
+
+> ### Join [GitHub Discussions](https://github.com/evelion-apps/things-api/discussions)

@@ -23,6 +23,7 @@ class TaskType < GraphQL::Schema::Object
   field :index, Integer, null: true
   field :todayIndex, Integer, null: true
   field :area, String, null: true
+  field :areaString, String, null: true
   field :project, String, null: true
   field :repeatingTemplate, String, null: true
   field :delegate, String, null: true

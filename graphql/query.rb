@@ -72,14 +72,6 @@ class QueryType < GraphQL::Schema::Object
     completed = Task.where(type: 0).where(status: 3).where.not(stopDate: nil).where("stopDate > ?", todayStart).where("stopDate <= ?", todayEnd)
     todos = (uncompleted + completed).sort_by {|todo| todo.todayIndex}
 
-    # Convert model instance to hash, allowing additional fields and data transforms
-    todos = todos.map do |todo|
-      as_hash = todo.attributes
-      as_hash["statusString"] = get_status_string(as_hash)
-      as_hash["typeString"] = "todo"
-      as_hash
-    end
-
     # Get associated data used for ordering
     headings = Task.where(type: 2).where(status: 0)
     projects = Task.where(type: 1).where(status: 0)
@@ -88,6 +80,11 @@ class QueryType < GraphQL::Schema::Object
     # Sort projects by the Area index. Projects without an associated area go first
     areas_index_lookup = areas.reduce({}) do |acc, area|
       acc[area.uuid] = area.index
+      acc
+    end
+
+    areas_title_lookup = areas.reduce({}) do |acc, area|
+      acc[area.uuid] = area.title
       acc
     end
 
@@ -109,6 +106,7 @@ class QueryType < GraphQL::Schema::Object
     # Convert model instance to hash, allowing additional fields and data transforms
     projects = projects.map do |project|
       as_hash = project.attributes
+      as_hash["areaString"] = areas_title_lookup[project.area]
       as_hash["statusString"] = get_status_string(as_hash)
       as_hash["typeString"] = "project"
       as_hash
@@ -116,7 +114,7 @@ class QueryType < GraphQL::Schema::Object
 
     # Group todos by project
     todos_by_project = todos.group_by do |todo|
-      headings_lookup[todo["actionGroup"]] || todo["project"]
+      headings_lookup[todo.actionGroup] || todo.project
     end
 
     # Walk through projects in sorted order, returning a list of projects and
@@ -125,6 +123,16 @@ class QueryType < GraphQL::Schema::Object
       todos_for_project = todos_by_project[project["uuid"]]
 
       if todos_for_project.present?
+
+        # Convert model instance to hash, allowing additional fields and data transforms
+        todos_for_project = todos_for_project.map do |todo|
+          as_hash = todo.attributes
+          as_hash["areaString"] = project["areaString"]
+          as_hash["statusString"] = get_status_string(as_hash)
+          as_hash["typeString"] = "todo"
+          as_hash
+        end
+
         acc = acc + [project] + todos_for_project
       end
 
