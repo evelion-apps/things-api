@@ -44,10 +44,14 @@ end
 
 class ThingsApi < Sinatra::Base
   get "/" do
+    headers 'Access-Control-Allow-Origin' => '*'
+
     "Welcome to GraphQL API for Things 3!\n\nTo get started, send a POST request to `/` with a valid GraphQL request in the body."
   end
 
   post "/" do
+    headers 'Access-Control-Allow-Origin' => '*'
+
     request.body.rewind
 
     request_body = request.body.read
