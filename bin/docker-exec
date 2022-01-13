@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Exit on error
+set -o errexit
+
+# Source environmental variables
+set -a && source .env && source .env.local && set +a
+
+sudo docker container exec -it things-api sh

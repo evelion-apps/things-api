@@ -12,7 +12,7 @@ require_relative "graphql/schema"
 
 configure do
   unless ENV["DB"].present?
-    p "Error: path to database file is missing. Please specify in the files `.env` or `.env.local` or pass as an argument in the start script `bin/start 3000 db/dev.sqlite3`"
+    p "Error: path to database file is missing. Please specify in the files `.env` or `.env.local` or pass as an argument in the start script `bin/start 3000 db/dev.sqlite`"
     exit 1
   end
 
@@ -29,8 +29,9 @@ if ENV["SYNC_DB_ENABLED"].downcase == "true"
       seconds_opt = ENV["SYNC_DB_REMOTE_WAIT_FOR_SYNC_IN_SECONDS"].present? ? "-s #{ENV["SYNC_DB_REMOTE_WAIT_FOR_SYNC_IN_SECONDS"]}" : nil
       remote_host_opt = ENV["SYNC_DB_REMOTE_HOST"].present? ? "-h #{ENV["SYNC_DB_REMOTE_HOST"]}" : nil
       user_opt = ENV["SYNC_DB_USERNAME"].present? ? "-u #{ENV["SYNC_DB_USERNAME"]}" : nil
+      password_opt = ENV["SYNC_DB_PASSWORD"].present? ? "-p #{ENV["SYNC_DB_PASSWORD"]}" : nil
 
-      `scripts/sync-db.sh #{remote_host_opt} #{user_opt} #{seconds_opt}`
+      `scripts/sync-db.sh #{remote_host_opt} #{user_opt} #{password_opt} #{seconds_opt}`
 
       puts "[Periodic Job][Sync DB][#{Time.now}] Completed"
       puts "[Periodic Job][Sync DB][#{Time.now}] Sleeping #{ENV["SYNC_DB_FREQUENCY_IN_SECONDS"]} seconds"

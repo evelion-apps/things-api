@@ -5,9 +5,9 @@ require_relative "../field_types"
 class TaskType < GraphQL::Schema::Object
   description "GraphQL Task Type"
 
-  field :uuid, String, null: false
+  field :uuid, String, null: true
   field :userModificationDate, Float, null: true
-  field :creationDate, Float, null: false
+  field :creationDate, Float, null: true
   field :trashed, Integer, null: true
   field :type, Integer, null: true
   field :typeString, String, null: true

@@ -1,7 +1,10 @@
 *.gem
 *.rbc
 .DS_Store
+*.sqlite-shm
+*.sqlite-wal
 *.sqlite3-shm
 *.sqlite3-wal
-.env.local
+db/*.sqlite
 db/*.sqlite3
+.env.local
